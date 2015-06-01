@@ -26,7 +26,9 @@
             moreText: "more",
             lessText: "less",
             errMsg: null,
-            force: false
+            force: false,
+            onMore: function () { },
+            onLess: function () { }
         };
 
         if (settings) {
@@ -49,12 +51,14 @@
                     $this.html(config.moreText);
                     $this.parent().prev().prev().show(); // shortcontent
                     $this.parent().prev().hide(); // allcontent
+                    config.onLess($this);
 
                 } else {
                     $this.addClass('less');
                     $this.html(config.lessText);
                     $this.parent().prev().prev().hide(); // shortcontent
                     $this.parent().prev().show(); // allcontent
+                    config.onMore($this);
                 }
                 return false;
             }
